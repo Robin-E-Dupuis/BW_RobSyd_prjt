@@ -1,20 +1,14 @@
 <?php
 session_start();
-
 if (isset($_SESSION['Username'])) {
     header('Location: index.php');
     exit();
 }
-
 $db = mysqli_connect('localhost', 'INFX472', 'P*ssword', 'wiki');
-
 if (!$db) {
     http_response_code(500);
     die('Unable to connect to the database.');
 }
-
-
-
 $username = '';
 $error = '';
 
@@ -58,13 +52,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>PHP Tester</title>
+	<title>Wiki HomePage</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h2>Wiki HomePage</h2>
     <main>
-
     <article>
 <p>Welcome to the Wiki HomePage!<br> This is a simple web application that allows users to log in and access various features.<br>Please log in to continue.</p>
 
@@ -72,7 +65,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form action="login.php" method="get">
             <button class="start-button" type="submit">Login</button>
         </form>
-       
+        <br>
+        <form action="createuser.php" method="get">
+            <button class="start-button" type="submit">New User</button>
+        </form>
         <br>
     </main>
     <footer>&copy; <?= date('Y') ?> Wiki HomePage</footer>
